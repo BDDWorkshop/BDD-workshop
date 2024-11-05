@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.math.BigDecimal.*;
+
 public class Basket {
 
     private final List<Ticket> tickets = new ArrayList<>();
@@ -17,7 +19,9 @@ public class Basket {
     }
 
     public BigDecimal getTotalPrice() {
-        return tickets.stream().map(Ticket::price).reduce(BigDecimal.ZERO, BigDecimal::add);
+        return tickets.stream()
+                .map(Ticket::price)
+                .reduce(ZERO, BigDecimal::add);
     }
 
     public void removeTicket(TicketType ticketType) {

@@ -20,6 +20,11 @@ public class TomorrowlandTicketService implements TicketService {
     }
 
     @Override
+    public boolean isAllowedToBuyTickets(Email email) {
+        return peopleAllowedToBuyTickets.contains(email);
+    }
+
+    @Override
     public Basket getBasket(Email email) {
         if (peopleAllowedToBuyTickets.contains(email)) {
             return baskets.computeIfAbsent(email, k -> new Basket());
@@ -33,17 +38,12 @@ public class TomorrowlandTicketService implements TicketService {
     }
 
     @Override
-    public void setPricing(TicketType ticketType, BigDecimal price) {
-        this.pricings.put(ticketType, price);
-    }
-
-    @Override
     public void removeTicketFromBasket(Email email, TicketType ticketType) {
         getBasket(email).removeTicket(ticketType);
     }
 
     @Override
-    public boolean isAllowedToBuyTickets(Email email) {
-        return peopleAllowedToBuyTickets.contains(email);
+    public void setPricing(TicketType ticketType, BigDecimal price) {
+        this.pricings.put(ticketType, price);
     }
 }
