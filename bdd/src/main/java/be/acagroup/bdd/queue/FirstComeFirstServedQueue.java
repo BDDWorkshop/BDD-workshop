@@ -22,7 +22,10 @@ public class FirstComeFirstServedQueue implements WaitingQueue {
 
     @Override
     public QueuePosition getPosition(Email email) {
-        return new QueuePosition(waitingList.indexOf(email) + 1);
+        if (waitingList.contains(email)) {
+            return new QueuePosition(waitingList.indexOf(email) + 1);
+        }
+        return null;
     }
 
     @Override
@@ -35,5 +38,6 @@ public class FirstComeFirstServedQueue implements WaitingQueue {
     private void allowNext() {
         var firstInQueue = waitingList.get(0);
         ticketService.allowToBuyTickets(firstInQueue);
+        waitingList.remove(firstInQueue);
     }
 }

@@ -9,4 +9,10 @@ public class ParameterTypes {
     public QueuePosition position(String position) {
         return new QueuePosition(Integer.parseInt(position));
     }
+
+    @ParameterType(".*")
+    public Email email(String email) {
+        return new Email(email);
+    }
+
 }

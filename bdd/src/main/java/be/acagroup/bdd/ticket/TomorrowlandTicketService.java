@@ -4,10 +4,13 @@ import be.acagroup.bdd.Email;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TomorrowlandTicketService implements TicketService {
 
     private final Collection<Email> peopleAllowedToBuyTickets = new ArrayList<>();
+    private final Map<Email, Basket> baskets = new HashMap<>();
 
     @Override
     public void allowToBuyTickets(Email email) {
@@ -16,12 +19,19 @@ public class TomorrowlandTicketService implements TicketService {
 
     @Override
     public Basket getBasket(Email email) {
+        if (peopleAllowedToBuyTickets.contains(email)) {
+            return baskets.computeIfAbsent(email, k -> new Basket());
+        }
         return null;
     }
 
     @Override
+    public void addTicketToBasket(Email email) {
+        getBasket(email).addTicket(new Ticket());
+    }
+
+    @Override
     public boolean isAllowedToBuyTickets(Email email) {
-        // naive implementation :)
-        return true;
+        return peopleAllowedToBuyTickets.contains(email);
     }
 }

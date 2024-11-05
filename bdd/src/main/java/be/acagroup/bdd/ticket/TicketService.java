@@ -9,6 +9,6 @@ public interface TicketService {
 
     Basket getBasket(Email email);
 
-    // void addTicketsToBasket(...);
+     void addTicketToBasket(Email email);
     // void makeTicketsAvailable(...);
 }

@@ -24,20 +24,25 @@ public class QueueStepDefinitions {
         waitingQueue.enterTheQueue(new Email(email));
     }
 
+    @Then("{} is not in the queue")
+    public void isNotInTheQueue(String email) {
+        assertThat(waitingQueue.getPosition(new Email(email))).isNull();
+    }
+
     @When("{} enters the queue again")
-    public void someoneEntersTheQueueAgain(String email) {
+    public void enterTheQueueAgain(String email) {
         waitingQueue.enterTheQueue(new Email(email));
     }
 
-    @Then("{} is assigned number {position} in the queue")
-    public void someoneIsAssignedNumberInTheQueue(String email, QueuePosition expectedPosition) {
-        var actualPosition = waitingQueue.getPosition(new Email(email));
+    @Then("{email} is assigned number {position} in the queue")
+    public void isAssignedNumberInTheQueue(Email email, QueuePosition expectedPosition) {
+        var actualPosition = waitingQueue.getPosition(email);
         assertThat(actualPosition).isEqualTo(expectedPosition);
     }
 
-    @Then("{} is still assigned number {position} in the queue")
-    public void someoneIsStillAssignedNumberInTheQueue(String email, QueuePosition expectedPosition) {
-        someoneIsAssignedNumberInTheQueue(email, expectedPosition);
+    @Then("{email} is still assigned number {position} in the queue")
+    public void isStillAssignedNumberInTheQueue(Email email, QueuePosition expectedPosition) {
+        isAssignedNumberInTheQueue(email, expectedPosition);
     }
 
     @When("the registration queue allows {int} people/person to start buying tickets")
@@ -48,5 +53,10 @@ public class QueueStepDefinitions {
     @Then("{} is allowed to buy tickets in the ticket service")
     public void isAllowedToBuyTickets(String email) {
         assertThat(ticketService.isAllowedToBuyTickets(new Email(email))).isTrue();
+    }
+
+    @Then("{} is not allowed to buy tickets in the ticket service")
+    public void notAllowedToBuyTicketsInTheTicketService(String email) {
+        assertThat(ticketService.isAllowedToBuyTickets(new Email(email))).isFalse();
     }
 }
