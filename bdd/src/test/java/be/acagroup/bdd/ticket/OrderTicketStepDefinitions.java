@@ -41,7 +41,7 @@ public class OrderTicketStepDefinitions {
         ticketService.addTicketToBasket(email, COMBI);
     }
 
-    @Then("The basket of {email} contains {int} ticket")
+    @Then("The basket of {email} contains {int} ticket(s)")
     public void numberOfTicketsInTheBasket(Email email, int numberOfTickets) {
         assertThat(ticketService.getBasket(email).getAllTickets()).hasSize(numberOfTickets);
     }
@@ -54,6 +54,13 @@ public class OrderTicketStepDefinitions {
     @When("{email} adds a combi ticket to the basket")
     public void addCombiTicket(Email email) {
         ticketService.addTicketToBasket(email, COMBI);
+    }
+
+    @When("{email} adds {int} {ticketType} tickets to the basket")
+    public void addCombiTicket(Email email, int numberOfTickets, TicketType ticketType) {
+        for (int i = 0; i < numberOfTickets; i++) {
+            ticketService.addTicketToBasket(email, ticketType);
+        }
     }
 
     @When("{email} adds a day ticket to the basket")

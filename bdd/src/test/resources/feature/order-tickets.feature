@@ -13,6 +13,11 @@ Feature: Order tickets
     When bdd@acagroup.be adds a ticket to the basket
     Then The basket of bdd@acagroup.be contains 1 ticket
 
+  Scenario: Add multiple tickets to the basket
+    Given bdd@acagroup.be is allowed to buy tickets
+    When bdd@acagroup.be adds 2 combi tickets to the basket
+    Then The basket of bdd@acagroup.be contains 2 tickets
+
   Scenario: Add different ticket types to the basket
     Given bdd@acagroup.be is allowed to buy tickets
     When bdd@acagroup.be adds a combi ticket to the basket
