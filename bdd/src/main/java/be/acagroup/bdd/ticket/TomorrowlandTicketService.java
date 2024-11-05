@@ -26,8 +26,8 @@ public class TomorrowlandTicketService implements TicketService {
     }
 
     @Override
-    public void addTicketToBasket(Email email) {
-        getBasket(email).addTicket(new Ticket());
+    public void addTicketToBasket(Email email, TicketType ticketType) {
+        getBasket(email).addTicket(new Ticket(ticketType));
     }
 
     @Override

@@ -1,6 +1,7 @@
 package be.acagroup.bdd;
 
 import be.acagroup.bdd.queue.QueuePosition;
+import be.acagroup.bdd.ticket.TicketType;
 import io.cucumber.java.ParameterType;
 
 public class ParameterTypes {
@@ -15,4 +16,8 @@ public class ParameterTypes {
         return new Email(email);
     }
 
+    @ParameterType(".*")
+    public TicketType ticketType(String ticketType) {
+        return TicketType.valueOf(ticketType.toUpperCase());
+    }
 }
