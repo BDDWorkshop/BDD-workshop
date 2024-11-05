@@ -1,8 +1,14 @@
 package be.acagroup.bdd.ticket;
 
 import be.acagroup.bdd.Email;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.assertj.core.api.AbstractBigDecimalAssert;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import static be.acagroup.bdd.ticket.TicketType.COMBI;
 import static be.acagroup.bdd.ticket.TicketType.DAY;
@@ -56,4 +62,17 @@ public class OrderTicketStepDefinitions {
         ticketService.addTicketToBasket(email, DAY);
     }
 
+    @And("{ticketType} tickets are priced at {bigdecimal} euro")
+    public void ticketsArePriced(TicketType ticketType, BigDecimal price) {
+        ticketService.setPricing(ticketType, price);
+    }
+
+    @Then("The total price of the basket of {email} is {bigdecimal} euro")
+    public void theTotalPriceOfTheBasketOfBddAcagroupBeIsEuro(Email email, BigDecimal price) {
+        assertEqualPrices(ticketService.getBasket(email).getTotalPrice(), price);
+    }
+
+    private void assertEqualPrices(BigDecimal actualPrice, BigDecimal expectedPrice) {
+        assertThat(actualPrice.setScale(2, RoundingMode.FLOOR)).isEqualTo(expectedPrice.setScale(2, RoundingMode.FLOOR));
+    }
 }

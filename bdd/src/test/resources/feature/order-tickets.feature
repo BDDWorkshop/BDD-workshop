@@ -22,3 +22,17 @@ Feature: Order tickets
     Given bdd@acagroup.be is allowed to buy tickets
     When bdd@acagroup.be adds a day ticket to the basket
     Then The basket of bdd@acagroup.be contains 1 day ticket
+
+  Scenario: Calculate the total price
+    Given bdd@acagroup.be is allowed to buy tickets
+    And combi tickets are priced at 100.00 euro
+    When bdd@acagroup.be adds a combi ticket to the basket
+    Then The total price of the basket of bdd@acagroup.be is 100.00 euro
+
+  Scenario: Calculate the total price
+    Given bdd@acagroup.be is allowed to buy tickets
+    And combi tickets are priced at 100.00 euro
+    And day tickets are priced at 70.00 euro
+    When bdd@acagroup.be adds a combi ticket to the basket
+    When bdd@acagroup.be adds a day ticket to the basket
+    Then The total price of the basket of bdd@acagroup.be is 170.00 euro
