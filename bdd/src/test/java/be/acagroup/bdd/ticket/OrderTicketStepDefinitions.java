@@ -14,7 +14,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class OrderTicketStepDefinitions {
 
-    private final TicketService ticketService = new TomorrowlandTicketService();
+    private final TicketInventory ticketInventory = new TicketInventory();
+    private final TicketService ticketService = new TomorrowlandTicketService(ticketInventory);
 
     @Given("{email} is allowed to buy tickets")
     public void makeAllowedToBuyTickets(Email email) {
@@ -69,7 +70,7 @@ public class OrderTicketStepDefinitions {
 
     @And("{ticketType} tickets are priced at {bigdecimal} euro")
     public void setTicketPricing(TicketType ticketType, BigDecimal price) {
-        ticketService.setPricing(ticketType, price);
+        ticketInventory.setPricing(ticketType, price);
     }
 
     @Then("The total price of the basket of {email} is {bigdecimal} euro")
@@ -84,6 +85,6 @@ public class OrderTicketStepDefinitions {
 
     @When("the ticket service makes {int} {ticketType} ticket(s) available")
     public void makeTicketsAvailable(int numberOfTickets, TicketType ticketType) {
-        ticketService.makeTicketsAvailable(numberOfTickets, ticketType);
+        ticketInventory.makeTicketsAvailable(numberOfTickets, ticketType);
     }
 }

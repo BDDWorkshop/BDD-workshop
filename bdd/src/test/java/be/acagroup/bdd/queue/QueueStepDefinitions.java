@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class QueueStepDefinitions {
 
-    private final TicketService ticketService = new TomorrowlandTicketService();
+    private final TicketService ticketService = new TomorrowlandTicketService(null);
     private final WaitingQueue waitingQueue = new FirstComeFirstServedQueue(ticketService);
 
     @When("{} enters the queue")

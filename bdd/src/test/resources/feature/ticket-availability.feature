@@ -1,4 +1,4 @@
-Feature: Order tickets
+Feature: Ticket availability
 
   Background:
     Given bdd@acagroup.be is allowed to buy tickets
@@ -20,5 +20,5 @@ Feature: Order tickets
     Given bdd@acagroup.be is allowed to buy tickets
     And the ticket service makes 2 combi tickets available
     And another@acagroup.be adds 2 combi tickets to the basket
-    When bdd@acagroup.be adds 1 combi tickets to the basket
+    When bdd@acagroup.be adds 1 combi ticket to the basket
     Then bdd@acagroup.be has an empty basket
