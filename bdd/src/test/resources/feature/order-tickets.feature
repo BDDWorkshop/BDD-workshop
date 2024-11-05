@@ -2,6 +2,8 @@ Feature: Order tickets
 
   Background:
     Given bdd@acagroup.be is allowed to buy tickets
+    And the ticket service makes 999 combi tickets available
+    And the ticket service makes 999 day tickets available
 
   Scenario: Allowed to buy tickets
     Given bdd@acagroup.be is allowed to buy tickets

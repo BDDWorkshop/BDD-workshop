@@ -16,5 +16,7 @@ public interface TicketService {
     void setPricing(TicketType ticketType, BigDecimal price);
 
     void removeTicketFromBasket(Email email, TicketType ticketType);
+
+    void makeTicketsAvailable(int numberOfTickets, TicketType ticketType);
     // void makeTicketsAvailable(...);
 }

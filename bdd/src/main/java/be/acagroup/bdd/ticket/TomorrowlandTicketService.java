@@ -13,6 +13,7 @@ public class TomorrowlandTicketService implements TicketService {
     private final Collection<Email> peopleAllowedToBuyTickets = new ArrayList<>();
     private final Map<Email, Basket> baskets = new HashMap<>();
     private final Map<TicketType, BigDecimal> pricings = new HashMap<>();
+    private final Map<TicketType, Integer> availableTickets = new HashMap<>();
 
     @Override
     public void allowToBuyTickets(Email email) {
@@ -34,12 +35,21 @@ public class TomorrowlandTicketService implements TicketService {
 
     @Override
     public void addTicketToBasket(Email email, TicketType ticketType) {
-        getBasket(email).addTicket(new Ticket(ticketType, pricings.get(ticketType)));
+        if (availableTickets.getOrDefault(ticketType, 0) > 0) {
+            availableTickets.computeIfPresent(ticketType, (k, currentAvailability) -> currentAvailability - 1);
+            getBasket(email).addTicket(new Ticket(ticketType, pricings.get(ticketType)));
+        }
     }
 
     @Override
     public void removeTicketFromBasket(Email email, TicketType ticketType) {
         getBasket(email).removeTicket(ticketType);
+    }
+
+    @Override
+    public void makeTicketsAvailable(int numberOfTickets, TicketType ticketType) {
+        this.availableTickets.putIfAbsent(ticketType, 0);
+        this.availableTickets.compute(ticketType, (k, currentAvailability) -> currentAvailability + numberOfTickets);
     }
 
     @Override

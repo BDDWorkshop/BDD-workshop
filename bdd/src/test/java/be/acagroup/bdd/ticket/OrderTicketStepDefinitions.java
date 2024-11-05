@@ -81,4 +81,9 @@ public class OrderTicketStepDefinitions {
         assertThat(actualPrice.setScale(2, RoundingMode.FLOOR))
                 .isEqualTo(expectedPrice.setScale(2, RoundingMode.FLOOR));
     }
+
+    @When("the ticket service makes {int} {ticketType} ticket(s) available")
+    public void makeTicketsAvailable(int numberOfTickets, TicketType ticketType) {
+        ticketService.makeTicketsAvailable(numberOfTickets, ticketType);
+    }
 }
