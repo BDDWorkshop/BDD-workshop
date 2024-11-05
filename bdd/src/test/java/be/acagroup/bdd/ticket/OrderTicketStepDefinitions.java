@@ -5,7 +5,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.assertj.core.api.AbstractBigDecimalAssert;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -74,5 +73,10 @@ public class OrderTicketStepDefinitions {
 
     private void assertEqualPrices(BigDecimal actualPrice, BigDecimal expectedPrice) {
         assertThat(actualPrice.setScale(2, RoundingMode.FLOOR)).isEqualTo(expectedPrice.setScale(2, RoundingMode.FLOOR));
+    }
+
+    @When("{email} removes a {ticketType} ticket to the basket")
+    public void removeATicketFromTheBasket(Email email, TicketType ticketType) {
+        ticketService.removeTicketFromBasket(email, ticketType);
     }
 }

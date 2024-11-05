@@ -2,7 +2,6 @@ package be.acagroup.bdd.ticket;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Basket {
@@ -19,5 +18,12 @@ public class Basket {
 
     public BigDecimal getTotalPrice() {
         return tickets.stream().map(Ticket::price).reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public void removeTicket(TicketType ticketType) {
+        var ticketToRemove = tickets.stream()
+                .filter(ticket -> ticket.type() == ticketType)
+                .findFirst();
+        ticketToRemove.ifPresent(tickets::remove);
     }
 }

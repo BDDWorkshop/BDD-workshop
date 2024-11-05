@@ -12,7 +12,7 @@ public class TomorrowlandTicketService implements TicketService {
 
     private final Collection<Email> peopleAllowedToBuyTickets = new ArrayList<>();
     private final Map<Email, Basket> baskets = new HashMap<>();
-    private Map<TicketType, BigDecimal> pricings = new HashMap<>();
+    private final Map<TicketType, BigDecimal> pricings = new HashMap<>();
 
     @Override
     public void allowToBuyTickets(Email email) {
@@ -35,6 +35,11 @@ public class TomorrowlandTicketService implements TicketService {
     @Override
     public void setPricing(TicketType ticketType, BigDecimal price) {
         this.pricings.put(ticketType, price);
+    }
+
+    @Override
+    public void removeTicketFromBasket(Email email, TicketType ticketType) {
+        getBasket(email).removeTicket(ticketType);
     }
 
     @Override

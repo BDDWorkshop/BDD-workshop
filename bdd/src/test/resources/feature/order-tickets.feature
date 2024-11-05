@@ -36,3 +36,10 @@ Feature: Order tickets
     When bdd@acagroup.be adds a combi ticket to the basket
     When bdd@acagroup.be adds a day ticket to the basket
     Then The total price of the basket of bdd@acagroup.be is 170.00 euro
+
+  Scenario: Remove a ticket from the basket
+    Given bdd@acagroup.be is allowed to buy tickets
+    And bdd@acagroup.be adds a combi ticket to the basket
+    And bdd@acagroup.be adds a combi ticket to the basket
+    When bdd@acagroup.be removes a combi ticket to the basket
+    Then The basket of bdd@acagroup.be contains 1 combi ticket
