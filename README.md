@@ -1,7 +1,7 @@
 # Behaviour Driven Development - workshop
 
 ## Getting started
-- clone github repository: `git clone https://github.com/tomaerden-everesst/bdd.git`
+- clone github repository: `git clone https://github.com/BDDWorkshop/BDD-workshop.git`
 - open the project in your IDE
   - make sure JDK 17 or higher is installed
   - Intellij
