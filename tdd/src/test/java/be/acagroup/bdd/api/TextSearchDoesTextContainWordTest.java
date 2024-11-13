@@ -10,7 +10,7 @@ public class TextSearchDoesTextContainWordTest {
      public void givenAText_whenTheTextContainsTheGivenWord_thenReturnsTrue() {
          String text = "This is a test text";
 
-         boolean containsTheWord = TextSearch.contains(text, "test");
+         boolean containsTheWord = StringHelperUtil.is(text, "test");
 
          assertThat(containsTheWord).isTrue();
      }
@@ -19,7 +19,7 @@ public class TextSearchDoesTextContainWordTest {
      public void givenAText_whenTheTextContainsTheGivenWordIgnoringCaps_thenReturnsTrue() {
          String text = "This is a test text";
 
-         boolean containsTheWord = TextSearch.contains(text, "TeSt");
+         boolean containsTheWord = StringHelperUtil.is(text, "TeSt");
 
          assertThat(containsTheWord).isTrue();
      }
@@ -28,7 +28,7 @@ public class TextSearchDoesTextContainWordTest {
      public void givenAText_whenTheTextDoesNotContainTheGivenWord_thenReturnsFalse() {
          String text = "This is a test text";
 
-         boolean containsTheWord = TextSearch.contains(text, "notfound");
+         boolean containsTheWord = StringHelperUtil.is(text, "notfound");
 
          assertThat(containsTheWord).isFalse();
      }
@@ -38,7 +38,7 @@ public class TextSearchDoesTextContainWordTest {
      public void givenAnEmptyText_whenValidatingAWordAgainstTheEmptyText_thenReturnsFalse() {
          String text = "";
 
-         boolean containsTheWord = TextSearch.contains(text, "test");
+         boolean containsTheWord = StringHelperUtil.is(text, "test");
 
          assertThat(containsTheWord).isFalse();
      }
@@ -48,7 +48,7 @@ public class TextSearchDoesTextContainWordTest {
      public void givenAText_whenValidatingAnEmptyWord_thenReturnsFalse() {
          String text = "This is a test text";
 
-         boolean containsTheWord = TextSearch.contains(text, "");
+         boolean containsTheWord = StringHelperUtil.is(text, "");
 
          assertThat(containsTheWord).isFalse();
      }
@@ -58,7 +58,7 @@ public class TextSearchDoesTextContainWordTest {
      public void givenAnEmptyText_whenValidatingAnEmptyWord_thenReturnsFalse() {
          String text = "";
 
-         boolean containsTheWord = TextSearch.contains(text, "");
+         boolean containsTheWord = StringHelperUtil.is(text, "");
 
          assertThat(containsTheWord).isFalse();
      }
@@ -68,7 +68,7 @@ public class TextSearchDoesTextContainWordTest {
      public void givenTextIsNull_whenValidatingAWordAgainstTheNullText_thenReturnsFalse() {
          String text = null;
 
-         boolean containsTheWord = TextSearch.contains(text, "test");
+         boolean containsTheWord = StringHelperUtil.is(text, "test");
 
          assertThat(containsTheWord).isFalse();
      }
@@ -78,7 +78,7 @@ public class TextSearchDoesTextContainWordTest {
      public void givenAText_whenValidatingNullAgainstTheText_thenReturnsFalse() {
          String text = "This is a test text";
 
-         boolean containsTheWord = TextSearch.contains(text, null);
+         boolean containsTheWord = StringHelperUtil.is(text, null);
 
          assertThat(containsTheWord).isFalse();
      }

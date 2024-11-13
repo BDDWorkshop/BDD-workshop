@@ -3,9 +3,9 @@ package be.acagroup.bdd.api;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TextSearch {
+public class StringHelperUtil {
 
-    public static boolean contains(String a, String b) {
+    public static boolean is(String a, String b) {
         String lowerA = a.toLowerCase();
         String lowerB = b.toLowerCase();
 
