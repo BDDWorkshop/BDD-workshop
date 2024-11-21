@@ -17,9 +17,7 @@ public class FirstComeFirstServedQueue implements WaitingQueue {
 
     @Override
     public void enterTheQueue(Email email) {
-        if (!waitingList.contains(email)) {
-            waitingList.add(email);
-        }
+        waitingList.add(email);
     }
 
     @Override
@@ -30,9 +28,7 @@ public class FirstComeFirstServedQueue implements WaitingQueue {
     @Override
     public void allowPeopleToBuyTickets(int numberOfPeople) {
         for (int i = 0; i < numberOfPeople; i++) {
-            if (!waitingList.isEmpty()) {
-                allowNext();
-            }
+            allowNext();
         }
     }
 

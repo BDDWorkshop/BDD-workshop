@@ -40,7 +40,7 @@ public class QueueStepDefinitions {
         someoneIsAssignedNumberInTheQueue(email, expectedPosition);
     }
 
-    @When("the registration queue allows {int} people to start buying tickets")
+    @When("the registration queue allows {int} people/person to start buying tickets")
     public void allowPeopleToBuyTickets(int numberOfTickets) {
         waitingQueue.allowPeopleToBuyTickets(numberOfTickets);
     }
