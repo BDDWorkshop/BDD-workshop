@@ -11,3 +11,5 @@
 - Execute `mvn install` if needed
 
 Next, you can find the exercises in the root of this project, the first one being `exercise_1.md`.
+
+Cucumber offers great [documentation](https://cucumber.io/docs/cucumber/).
