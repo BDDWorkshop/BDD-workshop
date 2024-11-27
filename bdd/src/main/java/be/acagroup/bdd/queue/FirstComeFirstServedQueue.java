@@ -31,7 +31,9 @@ public class FirstComeFirstServedQueue implements WaitingQueue {
     @Override
     public void allowPeopleToBuyTickets(int numberOfPeople) {
         for (int i = 0; i < numberOfPeople; i++) {
-            allowNext();
+            if (!waitingList.isEmpty()) {
+                allowNext();
+            }
         }
     }
 
